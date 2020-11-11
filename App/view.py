@@ -58,13 +58,6 @@ def printMenu():
     print("1- Inicializar Analizador")
     print("2- Cargar información de citibike")
     print("3- Requerimiento 1 ")
-    print("4- Requerimiento 2 ")
-    print("5- Requerimiento 3  ")
-    print("6- Requerimiento 4  ")
-    print("7- Requerimiento 5  ")
-    print("8- Requerimiento 6  ")
-    print("9- Requerimiento 7  ")
-    print("10- Requerimiento 8  ")
     print("0- Salir")
     print("*******************************************")
 
@@ -96,35 +89,6 @@ def optionThree():
 
 
 
-def optionFour():
-    controller.minimumCostPaths(cont, initialStation)
-
-
-def optionFive():
-    haspath = controller.hasPath(cont, destStation)
-    print('Hay camino entre la estación base : ' +
-          'y la estación: ' + destStation + ': ')
-    print(haspath)
-
-
-def optionSix():
-    path = controller.minimumCostPath(cont, destStation)
-    if path is not None:
-        pathlen = stack.size(path)
-        print('El camino es de longitud: ' + str(pathlen))
-        while (not stack.isEmpty(path)):
-            stop = stack.pop(path)
-            print(stop)
-    else:
-        print('No hay camino')
-
-
-def optionSeven():
-    maxvert, maxdeg = controller.servedRoutes(cont)
-    print('Estación: ' + maxvert + '  Total rutas servidas: '
-          + str(maxdeg))
-
-
 
 """
 Menu principal
@@ -145,26 +109,6 @@ while True:
 
     elif int(inputs[0]) == 3:
         executiontime = timeit.timeit(optionThree, number=1)
-        print("Tiempo de ejecución: " + str(executiontime))
-
-    elif int(inputs[0]) == 4:
-        msg = "Estación Base: BusStopCode-ServiceNo (Ej: 75009-10): "
-        initialStation = input(msg)
-        executiontime = timeit.timeit(optionFour, number=1)
-        print("Tiempo de ejecución: " + str(executiontime))
-
-    elif int(inputs[0]) == 5:
-        destStation = input("Estación destino (Ej: 15151-10): ")
-        executiontime = timeit.timeit(optionFive, number=1)
-        print("Tiempo de ejecución: " + str(executiontime))
-
-    elif int(inputs[0]) == 6:
-        destStation = input("Estación destino (Ej: 15151-10): ")
-        executiontime = timeit.timeit(optionSix, number=1)
-        print("Tiempo de ejecución: " + str(executiontime))
-
-    elif int(inputs[0]) == 7:
-        executiontime = timeit.timeit(optionSeven, number=1)
         print("Tiempo de ejecución: " + str(executiontime))
 
     else:
