@@ -329,8 +329,9 @@ def addEdge(graph, vertexa, vertexb, weight=0):
         Exception
     """
     try:
+        count=1
         # Se crea el arco
-        edge = e.newEdge(vertexa, vertexb, weight)
+        edge = e.newEdge(vertexa, vertexb, weight,count)
         # Se obtienen las listas de adyacencias de cada vertice
         # Se anexa a cada lista el arco correspondiente
         entrya = map.get(graph['vertices'], vertexa)

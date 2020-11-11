@@ -43,11 +43,130 @@ operación seleccionada.
 #  Variables
 # ___________________________________________________
 
-
+citibike_file ='Reto4-202020-Template\\Data'
+#'201801-1-citibike-tripdata.csv'
+initialStation = None
+recursionLimit = 20000
 # ___________________________________________________
 #  Menu principal
 # ___________________________________________________
 
+def printMenu():
+    print("\n")
+    print("*******************************************")
+    print("Bienvenido")
+    print("1- Inicializar Analizador")
+    print("2- Cargar información de citibike")
+    print("3- Requerimiento 1 ")
+    print("4- Requerimiento 2 ")
+    print("5- Requerimiento 3  ")
+    print("6- Requerimiento 4  ")
+    print("7- Requerimiento 5  ")
+    print("8- Requerimiento 6  ")
+    print("9- Requerimiento 7  ")
+    print("10- Requerimiento 8  ")
+    print("0- Salir")
+    print("*******************************************")
+
+def optionTwo():
+    print("\nCargando información de Citibike ....")
+    controller. loadTrips(cont)
+    numedges = controller.totalConnections(cont)
+    numvertex = controller.totalStops(cont)
+    print('Numero de vertices: ' + str(numvertex))
+    print('Numero de arcos: ' + str(numedges))
+    print('El limite de recursion actual: ' + str(sys.getrecursionlimit()))
+    sys.setrecursionlimit(recursionLimit)
+    print('El limite de recursion se ajusta a: ' + str(recursionLimit))
+
+
+def optionThree():
+    print("Requerimiento 1")
+    print("Se desea conocer si dos estaciones pertenecen al mismo cluster")
+    station1=int(input("ID de la primera estación: "))
+    station2=int(input("ID de la segunda estación: "))
+    boole=controller.sameCC(cont,station1,station2)
+    if boole== True:
+        res=" si"
+    else:
+        res=" no"
+    print('Las estaciones ',station1,' y ', station2,res," estan en el mismo cluster")
+    print('El número de componentes fuertemente conectados es: ' +
+          str(controller.numSCC(cont)))
+
+
+
+def optionFour():
+    controller.minimumCostPaths(cont, initialStation)
+
+
+def optionFive():
+    haspath = controller.hasPath(cont, destStation)
+    print('Hay camino entre la estación base : ' +
+          'y la estación: ' + destStation + ': ')
+    print(haspath)
+
+
+def optionSix():
+    path = controller.minimumCostPath(cont, destStation)
+    if path is not None:
+        pathlen = stack.size(path)
+        print('El camino es de longitud: ' + str(pathlen))
+        while (not stack.isEmpty(path)):
+            stop = stack.pop(path)
+            print(stop)
+    else:
+        print('No hay camino')
+
+
+def optionSeven():
+    maxvert, maxdeg = controller.servedRoutes(cont)
+    print('Estación: ' + maxvert + '  Total rutas servidas: '
+          + str(maxdeg))
+
+
+
 """
 Menu principal
 """
+
+while True:
+    printMenu()
+    inputs = input('Seleccione una opción para continuar\n>')
+
+    if int(inputs[0]) == 1:
+        print("\nInicializando....")
+        # cont es el controlador que se usará de acá en adelante
+        cont = controller.init()
+
+    elif int(inputs[0]) == 2:
+        executiontime = timeit.timeit(optionTwo, number=1)
+        print("Tiempo de ejecución: " + str(executiontime))
+
+    elif int(inputs[0]) == 3:
+        executiontime = timeit.timeit(optionThree, number=1)
+        print("Tiempo de ejecución: " + str(executiontime))
+
+    elif int(inputs[0]) == 4:
+        msg = "Estación Base: BusStopCode-ServiceNo (Ej: 75009-10): "
+        initialStation = input(msg)
+        executiontime = timeit.timeit(optionFour, number=1)
+        print("Tiempo de ejecución: " + str(executiontime))
+
+    elif int(inputs[0]) == 5:
+        destStation = input("Estación destino (Ej: 15151-10): ")
+        executiontime = timeit.timeit(optionFive, number=1)
+        print("Tiempo de ejecución: " + str(executiontime))
+
+    elif int(inputs[0]) == 6:
+        destStation = input("Estación destino (Ej: 15151-10): ")
+        executiontime = timeit.timeit(optionSix, number=1)
+        print("Tiempo de ejecución: " + str(executiontime))
+
+    elif int(inputs[0]) == 7:
+        executiontime = timeit.timeit(optionSeven, number=1)
+        print("Tiempo de ejecución: " + str(executiontime))
+
+    else:
+        sys.exit(0)
+sys.exit(0)

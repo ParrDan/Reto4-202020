@@ -32,23 +32,25 @@ Este código está basado en las implementaciones propuestas en:
 """
 
 
-def newEdge(va, vb, weight=0):
+def newEdge(va, vb, weight=0,count=1):
     """
     Crea un nuevo arco entrelos vertices va y vb
     """
     edge = {'vertexA': va,
             'vertexB': vb,
-            'weight': weight
+            'weight': weight, #promedio
+            'count': count # Numero de arcos en la misma dirección 
             }
     return edge
 
-
-def weight(edge):
+def averageWeight(edge, weight):
     """
-    Retorna el peso de un arco
+    Actualiza el peso del arco
     """
+    new=(edge['weight']*edge['count']+ weight)/(edge['count']+1)
+    edge['weight'] = new
+    edge['count'] += 1
     return edge['weight']
-
 
 def either(edge):
     """

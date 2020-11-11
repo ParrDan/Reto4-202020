@@ -113,6 +113,8 @@ def stronglyConnected(scc, verta, vertb):
         scca = map.get(scc['idscc'], verta)['value']
         sccb = map.get(scc['idscc'], vertb)['value']
         if scca == sccb:
+            print(scca)
+            print(sccb)
             return True
         return False
     except Exception as exp:
