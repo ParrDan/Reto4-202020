@@ -52,7 +52,7 @@ def newAnalyzer():
                     'paths': None
                     }
 
-        citibike['stops'] = m.newMap(numelements=14000,
+        citibike['stops'] = m.newMap(numelements=1000,
                                      maptype='PROBING',
                                      comparefunction=compareStations)
 
