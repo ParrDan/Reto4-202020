@@ -45,6 +45,7 @@ operación seleccionada.
 
 citibike_file ='Reto4-202020-Template\\Data'
 #'201801-1-citibike-tripdata.csv'
+'Reto4-202020-Template\\Data'
 initialStation = None
 recursionLimit = 20000
 # ___________________________________________________
